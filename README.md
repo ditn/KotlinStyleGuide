@@ -36,7 +36,7 @@ Follow the coding conventions:
 >```
 >In lambdas which are short and not nested, it's recommended to use the it convention instead of declaring the parameter explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
 
-To add to this, lambda parameters which are unused (or those used in destructured declarations) should be replaced with an underscore, unless leaving the parameter significantly improves readability. Android Studio will nag you about this anyway:
+To add to this, lambda parameters (or those in destructured declarations) which are unused should be replaced with an underscore, unless leaving the parameter significantly improves readability. Android Studio will nag you about this anyway:
 
 ```kotlin
  .subscribe(
