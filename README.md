@@ -1,7 +1,7 @@
 # Kotlin Style Guide
 A style guide for Android developers writing in Kotlin. These guidelines are based on the official Kotlin [coding conventions](https://kotlinlang.org/docs/reference/coding-conventions.html).
 
-###Naming Style
+### Naming Style
 
 If in doubt, default to the Java Coding Conventions such as:
 
@@ -15,7 +15,7 @@ If in doubt, default to the Java Coding Conventions such as:
 
 `const` properties or `val`s defined in a `companion object` should be SCREAMING\_SNAKE_CASE as if you were defining a `static final` variable in Java.
 
-###Colons
+### Colons
 
 There should be no space before a colon when separating a property/parameter name and it's type. There should however be a space before a colon which separates a type and supertype or interface:
 
@@ -25,7 +25,7 @@ interface Foo<out T : Any> : Bar {
 }
 ```
 
-###Lambdas
+### Lambdas
 
 Follow the coding conventions:
 
@@ -44,20 +44,20 @@ To add to this, lambda parameters which are unused should be replaced with an un
 	{ _ -> view.setUiState(UiState.FAILURE) })
 ```
 
-#Classes
+# Classes
 
-###Constructors
+### Constructors
 
 Initialize the properties of a class via primary constructor parameters instead of using an init block.
 
-####DO:
+#### Do:
 
 ```kotlin
 class Person(val firstName: String, val lastName: String, var age: Int) {
     // ...
 }
 ```
-####DON'T:
+#### Don't:
 
 ```kotlin
 class Person(firstName: String, lastName: String, age: Int) {
@@ -91,8 +91,8 @@ class Person(
     // ...
 }
 ```
-###Companion Objects
-Companion objects should be defined at the top of a class declaration, above properties and methods but below an `init` block if necessary:
+### Companion Objects
+Companion objects, such as those for `Fragment` `newInstance` methods, should be defined at the top of a class declaration, above properties and methods but below an `init` block if necessary:
 
 ```kotlin
 class MyFragment : Fragment() {
@@ -129,9 +129,9 @@ String key = MyFragment.BUNDLE_VALUE_ONE;
 ```
 This should only be used if inter-oping with Java.
 
-#Functions
+# Functions
 
-###Unit (void) Functions
+### Unit (void) Functions
 
 If a function returns Unit (eg `void` in Java), the return type should be omitted:
 
@@ -150,11 +150,11 @@ With that being said, if stubbing functions prefer using Kotlin's inline `TODO()
 
 ```kotlin
 fun foo() {
-	TODO()
+	TODO("This is yet to be implemented")
 }
 ```
 
-###Functions vs Properties
+### Functions vs Properties
 
 You'll often find that the `Convert Java file to Kotlin` intention in Android Studio/IntelliJ will convert some methods into properties. This might be a bit jarring coming from a Java background. However, properties are the idiomatic way of doing many things in Kotlin (no getters/setters, for instance). Follow JetBrain's simple guidelines to see whether a property is appropriate:
 
@@ -167,7 +167,7 @@ You'll often find that the `Convert Java file to Kotlin` intention in Android St
 >* is cheap to calculate (or caсhed on the first run)
 >* returns the same result over invocations
 
-###Extension Functions
+### Extension Functions
 
 As you would with creating Java util classes, create an extension package and make separate files for each type:
 
@@ -176,13 +176,13 @@ As you would with creating Java util classes, create an extension package and ma
   - ViewExtensions.kt
   - ...
 
-#Flow Control
+# Flow Control
 
-###When Statements
+### When Statements
 
 To keep `when` statements clean, do not call more than one function from a condition. Prefer to move these functions into a single enclosing function:
 
-####DO
+#### Do
 ```kotlin
 when (aValue) {
   1 -> doSomethingForCaseOne()
@@ -196,7 +196,7 @@ fun doSomethingForCaseTwo() {
 }
 ```
 
-####DON'T
+#### Don't
 
 ```kotlin
 when (aValue) {
@@ -210,14 +210,14 @@ when (aValue) {
 ```
 Similarly, because `when` doesn't fall through, separate cases using commas if you wish for multiple cases to be handled the same way:
 
-####DO
+#### Do
 ```kotlin
 when (aValue) {
   1, 3 -> doSomethingForCaseOneAndThree()
   2 -> doSomethingForCaseTwo()
 }
 ```
-####DON'T
+#### Don't
 
 ```kotlin
 when (aValue) {
