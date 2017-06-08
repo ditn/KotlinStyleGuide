@@ -96,23 +96,23 @@ Companion objects, such as those for `Fragment` `newInstance` methods, should be
 
 ```kotlin
 class MyFragment : Fragment() {
-	
-	init {
-		Injector.INSTANCE.inject(this)
-	}
+
+    init {
+        Injector.INSTANCE.inject(this)
+    }
 
     companion object {
-    	val BUNDLE_VALUE_ONE = "bundle_value_one"
-    		
+        val BUNDLE_VALUE_ONE = "bundle_value_one"
+
         fun newInstance(value1: String, value2: String): MyFragment {
             // ...
         }
     }
-    
+
     @Inject lateinit var dataManager: DataManager
-    
+
     fun doSomething() {
-    	// ...
+        // ...
     }
 }
 ```
@@ -153,6 +153,9 @@ fun foo() {
 	TODO("This is yet to be implemented")
 }
 ```
+### Expression Bodies
+
+Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`.
 
 ### Functions vs Properties
 
