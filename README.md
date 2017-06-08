@@ -32,8 +32,8 @@ Follow the coding conventions:
 >In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters from the body. Whenever possible, a lambda should be passed outside of parentheses.
 >
 >```kotlin
-list.filter { it > 10 }.map { element -> element * 2 }
-```
+>list.filter { it > 10 }.map { element -> element * 2 }
+>```
 >In lambdas which are short and not nested, it's recommended to use the it convention instead of declaring the parameter explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
 
 To add to this, lambda parameters which are unused should be replaced with an underscore, unless leaving the parameter significantly improves readability. Android Studio will nag you about this anyway:
