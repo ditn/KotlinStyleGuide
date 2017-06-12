@@ -92,7 +92,7 @@ class Person(
 }
 ```
 ### Companion Objects
-Companion objects, such as those for `Fragment` `newInstance` methods, should be defined at the top of a class declaration, above properties and methods but below an `init` block if necessary:
+Companion objects, such as those for `Fragment` `newInstance` methods, should be defined at the bottom of a class declaration;
 
 ```kotlin
 class MyFragment : Fragment() {
@@ -101,18 +101,18 @@ class MyFragment : Fragment() {
         Injector.INSTANCE.inject(this)
     }
 
+    @Inject lateinit var dataManager: DataManager
+
+    fun doSomething() {
+        // ...
+    }
+
     companion object {
         val BUNDLE_VALUE_ONE = "bundle_value_one"
 
         fun newInstance(value1: String, value2: String): MyFragment {
             // ...
         }
-    }
-
-    @Inject lateinit var dataManager: DataManager
-
-    fun doSomething() {
-        // ...
     }
 }
 ```
@@ -155,7 +155,7 @@ fun foo() {
 ```
 ### Expression Bodies
 
-Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`.
+Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`. One exception is passthrough methods, where the caller function is delegating to another class' method.
 
 ### Functions vs Properties
 
