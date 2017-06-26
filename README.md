@@ -108,7 +108,7 @@ class MyFragment : Fragment() {
     }
 
     companion object {
-        val BUNDLE_VALUE_ONE = "bundle_value_one"
+        const val BUNDLE_VALUE_ONE = "bundle_value_one"
 
         fun newInstance(value1: String, value2: String): MyFragment {
             // ...
@@ -122,12 +122,12 @@ As a sidenote regarding `val` properties in companion objects; accessing them fr
 String key = MyFragment.Companion.BUNDLE_VALUE_ONE;
 ```
 
-Annotating the property with `@JvmField` allows you to access a property as if it was static from Java code:
+Delcaring the property as a `const val` allows you to access a property as if it was static from Java code:
 
 ```java
 String key = MyFragment.BUNDLE_VALUE_ONE;
 ```
-This should only be used if inter-oping with Java.
+This also inlines any access to the `val`. For more information, check out [this](https://blog.egorand.me/where-do-i-put-my-constants-in-kotlin/) excellent article regarding constants in Kotlin.
 
 # Functions
 
