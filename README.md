@@ -44,6 +44,9 @@ To add to this, lambda parameters (or those in destructured declarations) which 
 	{ _ -> view.setUiState(UiState.FAILURE) })
 ```
 
+### Lambda Returns
+Adding a `return` to a Lambda in Kotlin is optional, and multiline Lambdas will just return the last line. In complex multi-line Lambdas, strongly consider adding a `return@map/flatmap/whatever` statement for the sake of clarity, as the return may not be particularly obvious at first glance.
+
 # Classes
 
 ### Constructors
@@ -127,7 +130,8 @@ Delcaring the property as a `const val` allows you to access a property as if it
 ```java
 String key = MyFragment.BUNDLE_VALUE_ONE;
 ```
-This also inlines any access to the `val`. For more information, check out [this](https://blog.egorand.me/where-do-i-put-my-constants-in-kotlin/) excellent article regarding constants in Kotlin.
+This also inlines any access to the `val`. There is a caveat though: this only works with 
+ For more information, check out [this](https://blog.egorand.me/where-do-i-put-my-constants-in-kotlin/) excellent article regarding constants in Kotlin.
 
 # Functions
 
@@ -155,7 +159,9 @@ fun foo() {
 ```
 ### Expression Bodies
 
-Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`. One exception is passthrough methods, where the caller function is delegating to another class' method.
+Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`. One exception is passthrough methods, where the caller function is delegating to another class' method. 
+
+Whilst expression bodies allow the omission of the return type, strongly consider keeping it for the sake of readability unless the function quite obviously returns a primitive type such as a `Boolean` or `String`. Whilst it's trivial to work out the return type using an IDE, omitting these types make code review painful and more error prone.
 
 ### Functions vs Properties
 
@@ -178,6 +184,8 @@ As you would with creating Java util classes, create an extension package and ma
   - ContextExtensions.kt
   - ViewExtensions.kt
   - ...
+
+Extension functions are fun, but don't go overboard. Try not to hide mountains of complexity behind clever extensions.
 
 # Flow Control
 
@@ -229,4 +237,3 @@ when (aValue) {
   3 -> doSomethingForCaseOneAndThree()
 }
 ```
-
