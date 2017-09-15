@@ -130,8 +130,7 @@ Delcaring the property as a `const val` allows you to access a property as if it
 ```java
 String key = MyFragment.BUNDLE_VALUE_ONE;
 ```
-This also inlines any access to the `val`. There is a caveat though: this only works with 
- For more information, check out [this](https://blog.egorand.me/where-do-i-put-my-constants-in-kotlin/) excellent article regarding constants in Kotlin.
+This also inlines any access to the `val`. There is a caveat though: this only works with primitives and Strings. For more information, check out [this](https://blog.egorand.me/where-do-i-put-my-constants-in-kotlin/) excellent article regarding constants in Kotlin.
 
 # Functions
 
